@@ -10,4 +10,4 @@ LABEL maintainer "@thomasuebel"
 EXPOSE 3306
 
 RUN mkdir -p /var/scripts
-COPY provision* /var/scripts
+COPY provision* /var/scripts/
