@@ -3,7 +3,7 @@ set -e
 
 if [[ $# < 1 ]]; then
 	echo "Manage the mysql-docker container"
-    echo "./ctr.sh [build|run|remove|provision]"
+    echo "./ctr.sh [build|run|remove|provision|all]"
     exit -1
 fi
 
@@ -19,7 +19,12 @@ case $1 in
 		docker rm mysql-docker
 	;;
 	provision)
-		docker exec mysql-docker ./var/scripts/create-baseschema.sh
+		docker exec mysql-docker ./var/scripts/run-scripts.sh
+	;;
+	all)
+		./ctr.sh build
+		./ctr.sh run
+		./ctr.sh provision
 	;;
 	*)
 		echo "Invalid parameter"
